@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+
+<bean id="user1"  class="com.ewh.shop.user.User">
+<property name="firstName"  value="aj"></property>
+<property name="lastName" value="Dahal"></property>
+</bean>
+
+<!-- <bean id="book" name="book" class="spring.mvc.Book">
+<property name="subscription" ref="booksubs" />
+<property name="authorName" value="RajuNath Dahal"></property>
+<property name="pages" value="101"></property>
+<property name="price" value="101.01"></property>
+<property name="pageList">
+<list>
+<value > "page1"</value>
+<value > "page2"</value>
+
+</list>
+</property>
+</bean> -->
+
+<!-- 
+<bean id="subscription" name="subscription" class="spring.mvc.Subscription">
+<property name="isbn"  value="12345"></property>
+<property name="type" value="English"></property>
+</bean> -->
+
+
+
+
+
+<!-- the below mentioned bean definitions are from Project 
+"SpringWithListOfObjectFindigingWhoWasAutoThief" -->
+
+<!-- <bean name="m" class="raj.spring.package2.Manager">
+<property name="tutor" ref="t"/>
+<property name="student" ref="student"/>
+</bean>
+
+<bean name="t" class="raj.spring.package2.Tutor"/>
+
+<bean name="student" class="raj.spring.package2.Student">
+<property name="car" ref="car"/>
+<property name="lastName" value="Raj"/>
+</bean>
+
+<bean name="car" class="raj.spring.package2.Car">
+<property name="name" value="Honda Accord"/>
+<property name="engine" ref="engine"/>
+</bean>
+
+<bean name="engine" class="raj.spring.package2.Engine">
+<property name="vinNumber" value="123456"/>
+</bean> -->
+<!-- End of the below mentioned... -->
+
+
+</beans>

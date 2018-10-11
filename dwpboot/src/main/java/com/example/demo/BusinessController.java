@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,8 @@ import com.ewh.shop.user.User;
 
 @Controller
 public class BusinessController {
+	@Autowired
+	private User user1;
 @RequestMapping("/home")
 public String  home() {
 	System.out.println("Inside home");
@@ -21,7 +24,7 @@ public String  home() {
 @RequestMapping(value= {"/get/anything"},method= {org.springframework.web.bind.annotation.RequestMethod.POST},headers= {"Accept=application/json"})
 public ResponseEntity<Status> getStatus(@RequestBody User user) {
 	Status s=new Status();
-	if(user.getFirstName().equalsIgnoreCase("raj")) {
+	if(user1.getFirstName().equalsIgnoreCase("raj")) {
 	
 	s.setCode(00000);
 	s.setMessage("success");
