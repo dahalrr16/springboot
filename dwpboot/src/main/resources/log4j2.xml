@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  <Properties>
+    <Property name="filename">${sys:log.directory}/dwpboot/dwpboot.log</Property>
+  </Properties>
+ 
+ <!-- log.framework.directory=C:/Users/rajkumar/Desktop/LOGS -->
+ 
+  <Appenders>
+   <RollingFile name="log-file" fileName="${filename}" filePattern="${filename}.%i.%d{yyyy-MM-dd}.log.gz"
+                  append="true">
+      <PatternLayout>
+        <Pattern>%d{EEEE yyyy-MM-dd HH:mm:ss, SSS}[%t] %p %c %x -%m%n</Pattern>
+      </PatternLayout>
+       <Policies>
+       <SizeBasedTriggeringPolicy size="20 MB" />
+       </Policies>
+     
+    </RollingFile>
+  
+    <Console name="console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{EEEE yyyy-MM-dd HH:mm:ss, SSS}[%t] %p %c %x -%m%n"/>
+    </Console>
+   
+  
+  </Appenders>
+ 
+  <Loggers>
+    <!-- <Logger name="org.apache.logging.log4j.test1" level="debug" additivity="false">
+      <ThreadContextMapFilter>
+        <KeyValuePair key="test" value="123"/>
+      </ThreadContextMapFilter>
+      <AppenderRef ref="STDOUT"/>
+    </Logger> -->
+ 
+   <!--  <Logger name="org.apache.logging.log4j.test2" level="debug" additivity="false">
+      <Property name="user">${sys:user.name}</Property>
+      <AppenderRef ref="File">
+        <ThreadContextMapFilter>
+          <KeyValuePair key="test" value="123"/>
+        </ThreadContextMapFilter>
+      </AppenderRef>
+      <AppenderRef ref="STDOUT" level="error"/>
+    </Logger> -->
+ 
+    <Root level="info">
+      <AppenderRef ref="console"/>
+        <AppenderRef ref="log-file"/>
+    </Root>
+  </Loggers>
+ 
+</Configuration>

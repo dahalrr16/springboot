@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.ewh.shop.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;

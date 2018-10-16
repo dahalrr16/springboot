@@ -4,7 +4,7 @@
 
 
 <bean id="user1"  class="com.ewh.shop.user.User">
-<property name="firstName"  value="aj"></property>
+<property name="firstName"  value="Raj"></property>
 <property name="lastName" value="Dahal"></property>
 </bean>
 
