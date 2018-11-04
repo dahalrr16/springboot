@@ -8,6 +8,100 @@
 <property name="lastName" value="Dahal"></property>
 </bean>
 
+<bean id="studentService" class="com.ewh.shop.service.StudentService">               
+    </bean>
+<bean id="studentDaoImpl2" class="com.ewh.shop.dao.StudentDaoImpl2">               
+    </bean>
+
+ <bean id="sessionFactory"
+        class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource">            
+        </property>     
+       <!--  <property name="mappingResources">
+            <list>
+                <value>conf/hibernate/UserMapping.hbm.xml</value>               
+            </list>
+        </property> -->
+        
+         <property name="annotatedClasses">
+            <list>
+                <value>com.ewh.shop.model.Student</value>               
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect"> org.hibernate.dialect.MySQL5Dialect </prop>
+                <prop key="hibernate.current_session_context_class">thread</prop>      
+               <!--  <prop key="hibernate.hbm2ddl.auto">update</prop> -->
+           <!--      <prop key="hibernate.cache.use_second_level_cache"> true </prop> -->
+              <!--   <prop key="hibernate.cache.use_query_cache">true</prop> -->
+            </props>
+        </property>
+    </bean>
+
+  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName">
+            <value>com.mysql.jdbc.Driver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:mysql://localhost:3306/service</value>
+        </property>
+        <property name="username">
+            <value>root2</value>
+        </property>
+        <property name="password">
+            <value>password72</value>
+        </property>     
+    </bean>
+
+
+<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory">            
+        </property>
+       
+    </bean>
+
+
+
+
+   <!--  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName">
+            <value>org.postgresql.Driver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:mysql://localhost:3306/student</value>
+        </property>
+        <property name="username">
+            <value>root</value>
+        </property>
+        <property name="password">
+            <value>password</value>
+        </property>     
+    </bean> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- <bean id="book" name="book" class="spring.mvc.Book">
 <property name="subscription" ref="booksubs" />
 <property name="authorName" value="RajuNath Dahal"></property>

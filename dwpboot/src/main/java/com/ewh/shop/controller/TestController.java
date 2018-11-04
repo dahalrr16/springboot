@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.ewh.shop.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -7,15 +7,17 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ewh.shop.exception.EwhException;
 import com.ewh.shop.user.Status;
 import com.ewh.shop.user.User;
 
 @Controller
-public class BusinessController {
-	private static Log log=LogFactory.getLog(BusinessController.class);
+public class TestController {
+	private static Log log=LogFactory.getLog(TestController.class);
 	@Autowired
 	private User user1;
 @RequestMapping("/home")
@@ -26,8 +28,9 @@ public String  home() {
 
 @Value("${base.package}")
 private String basePackage;
+
 @RequestMapping(value= {"/get/user"},method= {org.springframework.web.bind.annotation.RequestMethod.POST},headers= {"Accept=application/json"})
-public ResponseEntity<Status> getStatus(@RequestBody User user) {
+public ResponseEntity<Status> getStatus(@RequestBody User user) throws EwhException {
 	log.info("calling /get/anything");
 	log.info("base package "+basePackage);
 	log.info("Name of user requesting "+user.getFirstName());
@@ -44,6 +47,7 @@ public ResponseEntity<Status> getStatus(@RequestBody User user) {
 	return new ResponseEntity(s, HttpStatus.OK);
 	
 }
+
 
 
 }
