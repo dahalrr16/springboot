@@ -1,5 +1,7 @@
 package com.ewh.shop.controller;
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +67,14 @@ public ResponseEntity<Status> updateStudent(@RequestBody Student student) throws
 	Status s =new Status();
 	s.setCode(00000);
 	s.setMessage("Student   "+student.getName()+" updated successfully");
+	return new ResponseEntity(s, HttpStatus.OK);
+	
+}
+
+@RequestMapping(value= {"/get/all/students"},method= {org.springframework.web.bind.annotation.RequestMethod.GET},headers= {"Accept=application/json"})
+public ResponseEntity<List<Student>> getAllStudents() throws EwhException {
+	log.info("calling get/all/students");
+	List<Student> s=studentService.getAllStudents();
 	return new ResponseEntity(s, HttpStatus.OK);
 	
 }

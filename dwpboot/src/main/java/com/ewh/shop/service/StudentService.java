@@ -1,5 +1,7 @@
 package com.ewh.shop.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ewh.shop.dao.StudentDaoImpl2;
@@ -26,5 +28,8 @@ public class StudentService extends ServiceBase{
 		studentDaoImpl2.update(student);
 	}
 	
+	public List<Student> getAllStudents(){
+	return	studentDaoImpl2.findAll();
+	}
 
 }

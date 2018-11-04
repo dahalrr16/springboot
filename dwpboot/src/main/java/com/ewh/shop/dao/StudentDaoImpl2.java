@@ -38,8 +38,8 @@ public class StudentDaoImpl2 extends BaseDao implements StudentDaoInterface<Stud
 
 	@Override
 	public List<Student> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+	List<Student> studentList=	openCurrentSession().createQuery("from Student").list();
+		return studentList;
 	}
 
 	@Override
