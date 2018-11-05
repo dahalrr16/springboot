@@ -1,6 +1,13 @@
 package com.ewh.shop.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Multitest {
+	@Id
+	@GeneratedValue
 	private int id;
 	private String field;
 	private String category;

@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ewh.shop.error.ErrorResponse;
 import com.ewh.shop.exception.EwhException;
+import com.ewh.shop.model.Multitest;
 import com.ewh.shop.model.Student;
+import com.ewh.shop.service.MultitestService;
 import com.ewh.shop.service.StudentService;
 import com.ewh.shop.user.Status;
 @CrossOrigin
@@ -32,16 +34,18 @@ private String basePackage;
 
 @Autowired
 StudentService studentService;
+@Autowired
+MultitestService multitestService;
 
-@RequestMapping(value= {"/get/student/{id}"},method= {org.springframework.web.bind.annotation.RequestMethod.GET},headers= {"Accept=application/json"})
-public ResponseEntity<Student> getStudentById(@PathVariable("id") int id) throws EwhException {
-	log.info("calling get/student/id");
-	Student s=studentService.getStudentById(id);
+@RequestMapping(value= {"/get/multitest/{id}"},method= {org.springframework.web.bind.annotation.RequestMethod.GET},headers= {"Accept=application/json"})
+public ResponseEntity<Multitest> getMultitestById(@PathVariable("id") int id) throws EwhException {
+	log.info("calling get/Multitest/id");
+	Multitest s=multitestService.getMultitestById(id);
 	return new ResponseEntity(s, HttpStatus.OK);
 	
 }
 
-@RequestMapping(value= {"/add/student"},method= {org.springframework.web.bind.annotation.RequestMethod.POST},headers= {"Accept=application/json"})
+@RequestMapping(value= {"/add/multitest"},method= {org.springframework.web.bind.annotation.RequestMethod.POST},headers= {"Accept=application/json"})
 public ResponseEntity<Status> addStudent(@RequestBody Student student) throws EwhException {
 	log.info("calling add/student");
 	studentService.addStudent(student);
@@ -52,7 +56,7 @@ public ResponseEntity<Status> addStudent(@RequestBody Student student) throws Ew
 	
 }
 
-@RequestMapping(value= {"/delete/student"},method= {org.springframework.web.bind.annotation.RequestMethod.PUT},headers= {"Accept=application/json"})
+@RequestMapping(value= {"/delete/multitest"},method= {org.springframework.web.bind.annotation.RequestMethod.PUT},headers= {"Accept=application/json"})
 public ResponseEntity<Status> deleteStudent(@RequestBody Student student) throws EwhException {
 	log.info("calling delete/student");
 	studentService.deleteStudent(student);
@@ -63,7 +67,7 @@ public ResponseEntity<Status> deleteStudent(@RequestBody Student student) throws
 	
 }
 
-@RequestMapping(value= {"/update/student"},method= {org.springframework.web.bind.annotation.RequestMethod.PUT},headers= {"Accept=application/json"})
+@RequestMapping(value= {"/update/multitest"},method= {org.springframework.web.bind.annotation.RequestMethod.PUT},headers= {"Accept=application/json"})
 public ResponseEntity<Status> updateStudent(@RequestBody Student student) throws EwhException {
 	log.info("calling update/student");
 	studentService.updateStudent(student);
@@ -74,7 +78,7 @@ public ResponseEntity<Status> updateStudent(@RequestBody Student student) throws
 	
 }
 
-@RequestMapping(value= {"/get/all/students"},method= {org.springframework.web.bind.annotation.RequestMethod.GET},headers= {"Accept=application/json"})
+@RequestMapping(value= {"/get/all/multitests"},method= {org.springframework.web.bind.annotation.RequestMethod.GET},headers= {"Accept=application/json"})
 public ResponseEntity<List<Student>> getAllStudents() throws EwhException {
 	log.info("calling get/all/students");
 	List<Student> s=studentService.getAllStudents();
@@ -83,7 +87,7 @@ public ResponseEntity<List<Student>> getAllStudents() throws EwhException {
 }
 
 
-@RequestMapping(value= {"/add/students"},method= {org.springframework.web.bind.annotation.RequestMethod.POST},headers= {"Accept=application/json"})
+@RequestMapping(value= {"/add/multitests"},method= {org.springframework.web.bind.annotation.RequestMethod.POST},headers= {"Accept=application/json"})
 public ResponseEntity<Status> addStudents(@RequestBody List<Student> listToAdd) throws EwhException {
 	log.info("calling add/students");
 	studentService.addStudents(listToAdd);
@@ -94,7 +98,7 @@ public ResponseEntity<Status> addStudents(@RequestBody List<Student> listToAdd) 
 	
 }
 
-@RequestMapping(value= {"/delete/students"},method= {org.springframework.web.bind.annotation.RequestMethod.POST},headers= {"Accept=application/json"})
+@RequestMapping(value= {"/delete/multitests"},method= {org.springframework.web.bind.annotation.RequestMethod.POST},headers= {"Accept=application/json"})
 public ResponseEntity<Status> deleteStudents(@RequestBody List<Student> listToDelete) throws EwhException {
 	log.info("calling delete/students");
 	studentService.deleteStudents(listToDelete);

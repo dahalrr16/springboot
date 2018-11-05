@@ -13,7 +13,7 @@ public class MultitestService extends ServiceBase{
 	@Autowired
 	MultitestDaoImpl multitestDaoImpl;
 	
-	public Multitest getStudentById(int id) throws EwhException{
+	public Multitest getMultitestById(int id) throws EwhException{
 		return multitestDaoImpl.findById(id);
 	}
 	

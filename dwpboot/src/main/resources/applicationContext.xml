@@ -12,6 +12,11 @@
     </bean>
 <bean id="studentDaoImpl2" class="com.ewh.shop.dao.StudentDaoImpl2">               
     </bean>
+    
+    <bean id="multitestService" class="com.ewh.shop.service.MultitestService">               
+    </bean>
+<bean id="multitestDaoImpl2" class="com.ewh.shop.dao.MultitestDaoImpl">               
+    </bean>
 
  <bean id="sessionFactory"
         class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
@@ -25,7 +30,8 @@
         
          <property name="annotatedClasses">
             <list>
-                <value>com.ewh.shop.model.Student</value>               
+                <value>com.ewh.shop.model.Student</value>    
+                <value>com.ewh.shop.model.Multitest</value>          
             </list>
         </property>
         <property name="hibernateProperties">
