@@ -23,8 +23,8 @@ import com.ewh.shop.user.Status;
 @CrossOrigin
 @RestController
 @RequestMapping("/")
-public class StudentController {
-	private static Log log=LogFactory.getLog(StudentController.class);
+public class MultipleOptionController {
+	private static Log log=LogFactory.getLog(MultipleOptionController.class);
 	
 
 @Value("${base.package}")

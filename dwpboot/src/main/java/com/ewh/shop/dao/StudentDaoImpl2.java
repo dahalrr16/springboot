@@ -48,4 +48,20 @@ public class StudentDaoImpl2 extends BaseDao implements StudentDaoInterface<Stud
 		
 	}
 
+	@Override
+	public void deleteList(List<Student> listToDelete) {
+	for (Student student : listToDelete) {
+		delete(student);
+	}
+		
+	}
+
+	@Override
+	public void addList(List<Student> listToAdd) {
+	for (Student student : listToAdd) {
+		persist(student);
+	}
+		
+	}
+
 }

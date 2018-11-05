@@ -9,5 +9,7 @@ public T findById(Id id);
 public void delete(T entity);
 public List<T> findAll();
 public void deleteAll();
+public void deleteList(List<T> listToDelete);
+public void addList(List<T> listToAdd);
 
 }

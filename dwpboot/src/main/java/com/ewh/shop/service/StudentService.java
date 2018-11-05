@@ -32,4 +32,14 @@ public class StudentService extends ServiceBase{
 	return	studentDaoImpl2.findAll();
 	}
 
+	public void addStudents(List<Student> listToAdd) {
+		studentDaoImpl2.addList(listToAdd);
+		
+	}
+
+	public void deleteStudents(List<Student> listToDelete) {
+		studentDaoImpl2.deleteList(listToDelete);
+		
+	}
+
 }
