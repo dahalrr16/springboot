@@ -13,11 +13,16 @@ public class MultitestService extends ServiceBase{
 	@Autowired
 	MultitestDaoImpl multitestDaoImpl;
 	
+	public void updateMultitest(Multitest multitest) {
+		multitestDaoImpl.update(multitest);
+		
+	}
+	
 	public Multitest getMultitestById(int id) throws EwhException{
 		return multitestDaoImpl.findById(id);
 	}
 	
-	public void addStudent(Multitest student) {
+	public void addMultitest(Multitest student) {
 		multitestDaoImpl.persist(student);
 	}
 	
@@ -25,11 +30,9 @@ public class MultitestService extends ServiceBase{
 		multitestDaoImpl.delete(student);
 	}
 	
-	public void updateStudent(Multitest student) {
-		multitestDaoImpl.update(student);
-	}
 	
-	public List<Multitest> getAllStudents(){
+	
+	public List<Multitest> getAllMultitests(){
 	return	multitestDaoImpl.findAll();
 	}
 
@@ -42,5 +45,13 @@ public class MultitestService extends ServiceBase{
 		multitestDaoImpl.deleteList(listToDelete);
 		
 	}
+
+	public List<Multitest> getMultitestsRandom(int number) {
+		return	multitestDaoImpl.findMultitestRandom(number);
+	}
+
+	
+
+	
 
 }

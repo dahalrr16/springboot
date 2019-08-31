@@ -48,7 +48,7 @@ public ResponseEntity<Status> addStudent(@RequestBody Student student) throws Ew
 	Status s =new Status();
 	s.setCode(00000);
 	s.setMessage("Student   "+student.getName()+" added successfully");
-	return new ResponseEntity(s, HttpStatus.OK);
+	return new ResponseEntity(s, HttpStatus.CREATED);
 	
 }
 

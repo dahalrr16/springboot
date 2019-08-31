@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ewh.shop.error.ErrorResponse;
@@ -46,15 +47,54 @@ public ResponseEntity<Multitest> getMultitestById(@PathVariable("id") int id) th
 }
 
 @RequestMapping(value= {"/add/multitest"},method= {org.springframework.web.bind.annotation.RequestMethod.POST},headers= {"Accept=application/json"})
-public ResponseEntity<Status> addStudent(@RequestBody Student student) throws EwhException {
+public ResponseEntity<Status> addMultitest(@RequestBody Multitest multitest) throws EwhException {
 	log.info("calling add/student");
-	studentService.addStudent(student);
+	multitestService.addMultitest(multitest);
 	Status s =new Status();
 	s.setCode(00000);
-	s.setMessage("Student   "+student.getName()+" added successfully");
+	s.setMessage("Multitest   "+multitest.getId()+" added successfully with 201");
+	return new ResponseEntity(s, HttpStatus.CREATED);
+	
+}
+
+@RequestMapping(value= {"/update/multitest"},method= {org.springframework.web.bind.annotation.RequestMethod.POST},headers= {"Accept=application/json"})
+public ResponseEntity<Status> updateMultitest(@RequestBody Multitest multitest) throws EwhException {
+	log.info("calling update/student");
+	multitestService.updateMultitest(multitest);
+	Status s =new Status();
+	s.setCode(00000);
+	s.setMessage("Multitest   "+multitest.getId()+" added successfully");
 	return new ResponseEntity(s, HttpStatus.OK);
 	
 }
+
+
+@RequestMapping(value= {"/get/multitests/random"},method= {org.springframework.web.bind.annotation.RequestMethod.GET},headers= {"Accept=application/json"})
+public ResponseEntity<List<Multitest>> getMultitestsRandom(@RequestParam ("number") int number) throws EwhException {
+	log.info("calling get/multitests/random");
+	List<Multitest> s=multitestService.getMultitestsRandom(number);
+	return new ResponseEntity(s, HttpStatus.OK);
+	
+}
+
+
+
+@RequestMapping(value= {"/get/all/multitests"},method= {org.springframework.web.bind.annotation.RequestMethod.GET},headers= {"Accept=application/json"})
+public ResponseEntity<List<Multitest>> getAllMultitests() throws EwhException {
+	log.info("calling get/all/multitests");
+	List<Multitest> s=multitestService.getAllMultitests();
+	return new ResponseEntity(s, HttpStatus.OK);
+	
+}
+
+
+
+
+
+
+
+
+
 
 @RequestMapping(value= {"/delete/multitest"},method= {org.springframework.web.bind.annotation.RequestMethod.PUT},headers= {"Accept=application/json"})
 public ResponseEntity<Status> deleteStudent(@RequestBody Student student) throws EwhException {
@@ -78,13 +118,9 @@ public ResponseEntity<Status> updateStudent(@RequestBody Student student) throws
 	
 }
 
-@RequestMapping(value= {"/get/all/multitests"},method= {org.springframework.web.bind.annotation.RequestMethod.GET},headers= {"Accept=application/json"})
-public ResponseEntity<List<Student>> getAllStudents() throws EwhException {
-	log.info("calling get/all/students");
-	List<Student> s=studentService.getAllStudents();
-	return new ResponseEntity(s, HttpStatus.OK);
-	
-}
+
+
+
 
 
 @RequestMapping(value= {"/add/multitests"},method= {org.springframework.web.bind.annotation.RequestMethod.POST},headers= {"Accept=application/json"})

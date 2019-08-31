@@ -1,0 +1,276 @@
+openapi: 3.0.0
+info:
+  title: Create Subject
+  version: '1.0'
+  description:   This is the  api which creates any Subject
+  contact:
+   name: Raj
+   email: raj.hbm@gmail.com
+paths:
+   /context/subjects:
+    post:
+     tags:
+       - Subject
+     summary: It creates one subject
+     operationId: createSubject
+     description:  Creates subject as needed.
+     parameters:
+         - $ref: '#/components/parameters/MAIN-IDENTITY'
+         - $ref: '#/components/parameters/SUB-IDENTITY'
+     requestBody:
+        required: true
+        description: "Subject is required to create that subject"
+        content:
+          application/json:
+            schema:
+             $ref: '#/components/schemas/Subject'
+     responses:
+        '200':
+          description: 200 response OK
+          content:
+             application/json:
+               schema:
+                  $ref: '#/components/schemas/Subject'
+
+        '400':
+         description: The request was invalid or cannot be served.
+         content:
+           application/json:
+             schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+        '401':
+         description: The request requires user authentication
+         content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ErrorResponse'
+
+        '403':
+         description: The server understood the request but is refusing it or access is not allowed.
+         content:
+            application/json:
+             schema:
+               $ref: '#/components/schemas/ErrorResponse'
+
+        '404':
+         description: There is no resource for the request.
+         content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+        '405':
+         description: The requested method is not allowed.
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/ErrorResponse'
+
+        '422':
+         description: The request is not compatible.
+         content:
+           application/json:
+             schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+        '500':
+         description: Request can not be processed at the moement try again later.
+         content:
+           application/json:
+             schema:
+              $ref: '#/components/schemas/ErrorResponse'
+components:
+  parameters:
+   MAIN-IDENTITY:
+       name: MainIdentity
+       in: header
+       description: Main header
+       required: true
+       schema:
+        $ref: '#/components/schemas/MainIdentity'
+   SUB-IDENTITY:
+       name: SUB-IDENTITY
+       in: header
+       description: Sub header
+       required: true
+       schema:
+        $ref: '#/components/schemas/SubIdentity'
+  schemas:
+   Subject:
+       type:  object
+       
+       properties:
+         subjectName:
+           type: string
+           maxLength: 100
+           example: subject1
+           description: First subject
+         friends: 
+           type: array
+           description: list of friends of the subject.
+           items:
+            $ref: '#/components/schemas/Friend'
+
+         addresses: 
+           type: array
+           description: Address of the subject's friends.
+           items:
+             $ref: '#/components/schemas/Address'
+   Friend:
+       type: object
+       required:
+       - sequence
+       properties:
+         sequence:
+           type: integer
+           format: int32
+           maximum: 3
+           example: 1
+           description: sequence of the friend with 1 being the primary friend
+
+         prefix:
+           type: string
+           example: Mr.
+           description: Prefix of the friend
+           enum:
+             - Mr.
+             - Ms.
+             - Mrs.
+             - Dr.
+
+         firstName:
+           type: string
+           maxLength: 25
+           example: demo
+           description: First name of the friend
+
+         lastName:
+           type: string
+           maxLength: 25
+           example: Friend
+           description: Last name of the friend
+
+         dateOfBirth:
+           type: string
+           format: Date 
+           example: 19000101
+           description: Birth date of the friend in YYYYMMDD format.
+   Address:
+       type: object
+       properties:
+         addressTypeCode: 
+           type: integer
+           format: int32
+           example: 1
+           description: specifies the friend type. First=1 (primary) second (secondary) third (alternate)
+           enum:
+             - CL 
+             - CM 
+             - CA 
+             - CE 
+         attentionTo: 
+           type: string
+           maxLength: 50
+           example: Peshal Nepal
+           description: name of the receiver
+         addressLineOne:
+           type: string
+           maxLength: 50
+           example: address line 1
+           description: Line 1 of the address
+         city:
+           type: string
+           maxLength: 30
+           example: Cary
+           description: name  of the city
+
+       #---------------------------------------------------------------------------
+       # Error Response
+       #---------------------------------------------------------------------------  
+   MainIdentity:
+        description: Exactly what happened main identity
+        type: object
+        properties:
+         requestingId:
+           type: string
+           description: The id which represents the user.
+           minLength: 1
+           maxLength: 25
+           pattern: '([a-zA-Z0-9])*'
+
+         requestingRole: 
+           description: The role of requesting Id.
+           type: string
+           minLength: 1
+           maxLength: 30
+           pattern: '([a-zA-Z0-9])*'
+   SubIdentity:
+         description: Exactly what happened sub identity
+         type: object
+
+         properties:
+             subId:
+               type: string
+               description: The  sub id which represents the user.
+               minLength: 1
+               maxLength: 25
+               pattern: '([a-zA-Z0-9])*'
+
+             subRole: 
+               description: The role of requesting sub Id.
+               type: string
+               minLength: 1
+               maxLength: 30
+               pattern: '([a-zA-Z0-9])*'
+   ErrorResponse:
+       description: REST Response Message Construct
+       type: object
+       properties:
+          messages:
+           $ref: '#/components/schemas/Messages'
+   Messages:
+       type: object
+       required:
+         - status
+         - messageList
+       properties:
+         status:
+           type: string
+           description: The overall result of the request.
+           enum:
+             - SUCCESSFUL
+             - FAILURE
+           example: FAILURE
+
+         messageList:
+           type: array
+           description: The list of ErrorResponse returned by the service.
+           items:
+             $ref: '#/components/schemas/Message'
+           minItems: 1
+   Message: 
+     type: object
+     required:
+       - severity
+       - messageContent
+     properties:
+       severity:
+         type: string
+         description: The message's severity level.
+         enum:
+           - FATAL
+           - ERROR 
+           - WARNING
+           - INFO 
+         example: ERROR
+       code:
+         type: string
+         description: Alphanumeric code that can be used to identify error and warning ErrorResponse
+         example: 999
+       messageContent: 
+          type: string
+          maxLength: 400
+          description: The message returned from the error.
+          example: Your request could not be processed.
+

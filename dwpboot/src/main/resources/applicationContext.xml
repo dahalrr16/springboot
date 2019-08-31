@@ -15,7 +15,12 @@
     
     <bean id="multitestService" class="com.ewh.shop.service.MultitestService">               
     </bean>
-<bean id="multitestDaoImpl2" class="com.ewh.shop.dao.MultitestDaoImpl">               
+<bean id="multitestDaoImpl" class="com.ewh.shop.dao.MultitestDaoImpl">               
+    </bean>
+    
+     <bean id="heroService" class="com.ewh.shop.service.HeroService">               
+    </bean>
+<bean id="heroDaoImpl" class="com.ewh.shop.dao.HeroDaoImpl">               
     </bean>
 
  <bean id="sessionFactory"
@@ -31,7 +36,8 @@
          <property name="annotatedClasses">
             <list>
                 <value>com.ewh.shop.model.Student</value>    
-                <value>com.ewh.shop.model.Multitest</value>          
+                <value>com.ewh.shop.model.Multitest</value>    
+                 <value>com.ewh.shop.model.Hero</value>          
             </list>
         </property>
         <property name="hibernateProperties">

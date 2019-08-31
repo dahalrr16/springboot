@@ -42,6 +42,12 @@ public class MultitestDaoImpl extends BaseDao implements MultitestDaoInterface<M
 	List<Multitest> multitestList=	openCurrentSession().createQuery("from Multitest").list();
 		return multitestList;
 	}
+	
+	
+	public List<Multitest> findAllByQuery(String query) {
+	List<Multitest> multitestList=	openCurrentSession().createQuery(query).list();
+		return multitestList;
+	}
 
 	@Override
 	public void deleteAll() {
@@ -63,6 +69,13 @@ public class MultitestDaoImpl extends BaseDao implements MultitestDaoInterface<M
 		persist(multitest);
 	}
 		
+	}
+
+	public List<Multitest> findMultitestRandom(int number) {
+		String query="from Multitest order by rand()";
+		List<Multitest> multitestList=	openCurrentSession().createQuery(query).setMaxResults(number).list();
+	//	return findAllByQuery(query);
+		return multitestList;
 	}
 
 }
