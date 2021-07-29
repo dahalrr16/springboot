@@ -7,8 +7,6 @@
 	<artifactId>dwpboot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	
-
 	<name>dwpboot</name>
 	<description>Demo project for Spring Boot</description>
 
